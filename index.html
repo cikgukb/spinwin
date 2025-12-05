@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spin & Win - KB Wealth</title>
+    <meta name="description" content="Putar roda dan menangkan hadiah menarik dari KB Wealth!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Logo & Header -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="logo-glow"></div>
+                <h1 class="logo">KB <span>Wealth</span></h1>
+            </div>
+            <p class="tagline">🎰 Putar & Menang! 🎰</p>
+        </header>
+
+        <!-- Registration Form Section -->
+        <section class="form-section" id="formSection">
+            <div class="form-card">
+                <div class="card-shine"></div>
+                <div class="form-header">
+                    <div class="gift-icon">🎁</div>
+                    <h2>Daftar & Menang!</h2>
+                    <p>Isi maklumat anda untuk peluang memenangi hadiah menarik</p>
+                </div>
+                
+                <form id="registrationForm" class="registration-form">
+                    <div class="input-group">
+                        <div class="input-icon">👤</div>
+                        <input type="text" id="nama" name="nama" placeholder="Nama Penuh" required>
+                        <div class="input-line"></div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-icon">📱</div>
+                        <input type="tel" id="telefon" name="telefon" placeholder="No. Telefon (cth: 0123456789)" required pattern="[0-9]{10,11}">
+                        <div class="input-line"></div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-icon">✉️</div>
+                        <input type="email" id="email" name="email" placeholder="Alamat Email" required>
+                        <div class="input-line"></div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-text">Teruskan untuk SPIN!</span>
+                        <span class="btn-icon">🎡</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </form>
+                
+                <p class="terms">Dengan meneruskan, anda bersetuju dengan <a href="#">Terma & Syarat</a></p>
+            </div>
+        </section>
+
+        <!-- Spin Wheel Section (Hidden initially) -->
+        <section class="wheel-section" id="wheelSection" style="display: none;">
+            <div class="wheel-container">
+                <div class="wheel-glow"></div>
+                
+                <!-- Wheel Pointer -->
+                <div class="wheel-pointer">
+                    <div class="pointer-arrow"></div>
+                </div>
+                
+                <!-- The Wheel -->
+                <div class="wheel" id="wheel">
+                    <div class="wheel-segment segment-1">
+                        <span>DISKAUN 50%</span>
+                    </div>
+                    <div class="wheel-segment segment-2">
+                        <span>CUBA LAGI</span>
+                    </div>
+                    <div class="wheel-segment segment-3">
+                        <span>VOUCHER RM50</span>
+                    </div>
+                    <div class="wheel-segment segment-4">
+                        <span>DISKAUN 20%</span>
+                    </div>
+                    <div class="wheel-segment segment-5">
+                        <span>HADIAH MISTERI</span>
+                    </div>
+                    <div class="wheel-segment segment-6">
+                        <span>FREE GIFT</span>
+                    </div>
+                    <div class="wheel-segment segment-7">
+                        <span>DISKAUN 10%</span>
+                    </div>
+                    <div class="wheel-segment segment-8">
+                        <span>CUBA LAGI</span>
+                    </div>
+                </div>
+                
+                <!-- Center Button -->
+                <button class="spin-button" id="spinBtn">
+                    <span class="spin-text">SPIN!</span>
+                    <div class="spin-glow"></div>
+                </button>
+            </div>
+            
+            <p class="spin-instruction">Tekan butang untuk memutar roda! 🍀</p>
+        </section>
+
+        <!-- Result Modal -->
+        <div class="modal-overlay" id="resultModal">
+            <div class="result-modal">
+                <div class="confetti-container" id="confetti"></div>
+                <div class="modal-content">
+                    <div class="trophy-icon">🏆</div>
+                    <h2 class="result-title">TAHNIAH!</h2>
+                    <p class="winner-name" id="winnerName"></p>
+                    <div class="prize-display">
+                        <span class="prize-label">Anda Memenangi:</span>
+                        <div class="prize-value" id="prizeValue"></div>
+                    </div>
+                    <p class="result-message">Hadiah anda akan dihantar melalui email/WhatsApp</p>
+                    <button class="claim-btn" id="claimBtn">
+                        <span>Teruskan ke Facebook</span>
+                        <span class="arrow">→</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
