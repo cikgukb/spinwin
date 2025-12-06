@@ -518,16 +518,18 @@ body {
 
 .wheel-segment span {
     position: absolute;
-    top: 25%;
-    left: 15%;
+    top: 35%;
+    left: 20%;
     transform: rotate(67.5deg);
     transform-origin: center center;
-    font-size: 0.5rem;
+    font-size: 0.9rem;
+    /* larger text */
     font-weight: 700;
     color: #fff;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
     text-align: center;
-    width: 75px;
+    width: 90px;
+    /* wider for longer text */
     line-height: 1.2;
     letter-spacing: 0.3px;
 }

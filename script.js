@@ -136,8 +136,8 @@ function validateForm() {
     const phoneRegex = /^[0-9]{10,11}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (userData.nama.length < 2) {
-        showAlert('Sila masukkan nama yang sah');
+    if (userData.nama.length < 6) {
+        showAlert('Sila masukkan nama sekurang‑kurangnya 6 aksara');
         return false;
     }
 
