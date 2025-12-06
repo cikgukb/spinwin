@@ -26,7 +26,7 @@ const FACEBOOK_URL = "https://www.facebook.com/kbbeyond";
 
 // Google Sheets Web App URL - GANTI DENGAN URL ANDA
 // Ikut panduan di bawah untuk mendapatkan URL ini
-const GOOGLE_SHEET_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
+const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbzvXNGh9-NqkeDDy3tbK8OT8Pak2iYGkwX5A7eJqwiFAwd_KJepRumOa8wTs3OQpD2H1w/exec";
 
 // DOM Elements
 const welcomeSection = document.getElementById('welcomeSection');
