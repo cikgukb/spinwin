@@ -137,12 +137,12 @@ function validateForm() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (userData.nama.length < 6) {
-        showAlert('Pihak penganjur perlukan nama yang betul bagi memudahkan proses menghantar hadiah');
+        showAlert('Sila masukkan nama sekurang‑kurangnya 6 aksara');
         return false;
     }
 
     if (!phoneRegex.test(userData.telefon)) {
-        showAlert('Pihak penganjur perlukan no telefon yang betul bagi memudahkan proses menghubungi pemenang');
+        showAlert('Sila masukkan nombor telefon yang sah (10-11 digit)');
         return false;
     }
 
