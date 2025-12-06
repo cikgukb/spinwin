@@ -9,7 +9,8 @@
    - A1: `Nama`
    - B1: `Telefon`
    - C1: `Email`
-   - D1: `Timestamp`
+   - D1: `Hadiah`
+   - E1: `Timestamp`
 
 ## Langkah 2: Buat Google Apps Script
 
@@ -27,10 +28,11 @@ function doPost(e) {
     var nama = e.parameter.nama;
     var telefon = e.parameter.telefon;
     var email = e.parameter.email;
+    var hadiah = e.parameter.hadiah;
     var timestamp = e.parameter.timestamp;
     
     // Tambah row baru dengan data
-    sheet.appendRow([nama, telefon, email, timestamp]);
+    sheet.appendRow([nama, telefon, email, hadiah, timestamp]);
     
     // Return success response
     return ContentService

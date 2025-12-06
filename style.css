@@ -478,14 +478,23 @@ body {
     height: 100%;
     border-radius: 50%;
     position: relative;
-    background: conic-gradient(#FFD700 0deg 45deg,
-            #8E44AD 45deg 90deg,
-            #FF6B6B 90deg 135deg,
-            #4ECDC4 135deg 180deg,
-            #FFD700 180deg 225deg,
-            #8E44AD 225deg 270deg,
-            #FF6B6B 270deg 315deg,
-            #4ECDC4 315deg 360deg);
+    background: conic-gradient(#4ECDC4 0deg 45deg,
+            /* Segment 1 - Free Buku ChatGPT (Teal) */
+            #9B59B6 45deg 90deg,
+            /* Segment 2 - Guerilla Marketing (Purple) */
+            #E74C3C 90deg 135deg,
+            /* Segment 3 - Minta Maaf (RED) */
+            #9B59B6 135deg 180deg,
+            /* Segment 4 - Guerilla Marketing (Purple) */
+            #E74C3C 180deg 225deg,
+            /* Segment 5 - Minta Maaf (RED) */
+            #FFD700 225deg 270deg,
+            /* Segment 6 - Cuba Lagi (Gold) */
+            #E74C3C 270deg 315deg,
+            /* Segment 7 - Minta Maaf (RED) */
+            #FFD700 315deg 360deg
+            /* Segment 8 - Cuba Lagi (Gold) */
+        );
     box-shadow:
         0 0 0 8px var(--gold),
         0 0 0 12px var(--purple),
@@ -503,23 +512,30 @@ body {
     left: 50%;
     transform-origin: 0% 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-right: 10px;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 .wheel-segment span {
     position: absolute;
-    top: 35%;
-    left: 20%;
+    top: 25%;
+    left: 15%;
     transform: rotate(67.5deg);
-    font-size: 0.65rem;
+    transform-origin: center center;
+    font-size: 0.5rem;
     font-weight: 700;
     color: #fff;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
     text-align: center;
-    width: 70px;
+    width: 75px;
     line-height: 1.2;
+    letter-spacing: 0.3px;
+}
+
+/* Segment sorry - Red background styling */
+.segment-sorry span {
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .segment-1 {

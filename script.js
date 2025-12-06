@@ -2,23 +2,24 @@
 // KB Wealth Spin & Win - JavaScript
 // ========================================
 
-// Prize Configuration
+// Prize Configuration - 8 segments
 const prizes = [
-    { name: "DISKAUN 50%", color: "#FFD700" },
-    { name: "CUBA LAGI", color: "#8E44AD" },
-    { name: "VOUCHER RM50", color: "#FF6B6B" },
-    { name: "DISKAUN 20%", color: "#4ECDC4" },
-    { name: "HADIAH MISTERI", color: "#FFD700" },
-    { name: "FREE GIFT", color: "#8E44AD" },
-    { name: "DISKAUN 10%", color: "#FF6B6B" },
-    { name: "CUBA LAGI", color: "#4ECDC4" }
+    { name: "Free Buku ChatGPT For Business", color: "#4ECDC4", isSorry: false },
+    { name: "Free Ebook Guerilla Marketing Cikgukb", color: "#9B59B6", isSorry: false },
+    { name: "Minta Maaf Cuba Lagi Di Lain Masa 😭", color: "#E74C3C", isSorry: true },
+    { name: "Free Ebook Guerilla Marketing Cikgukb", color: "#9B59B6", isSorry: false },
+    { name: "Minta Maaf Cuba Lagi Di Lain Masa 😭", color: "#E74C3C", isSorry: true },
+    { name: "Cuba Lagi", color: "#FFD700", isSorry: false },
+    { name: "Minta Maaf Cuba Lagi Di Lain Masa 😭", color: "#E74C3C", isSorry: true },
+    { name: "Cuba Lagi", color: "#FFD700", isSorry: false }
 ];
 
 // User Data Storage
 let userData = {
     nama: '',
     telefon: '',
-    email: ''
+    email: '',
+    hadiah: ''  // Tambah field untuk hadiah
 };
 
 // Facebook redirect URL
@@ -26,7 +27,7 @@ const FACEBOOK_URL = "https://www.facebook.com/kbbeyond";
 
 // Google Sheets Web App URL - GANTI DENGAN URL ANDA
 // Ikut panduan di bawah untuk mendapatkan URL ini
-const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbzvXNGh9-NqkeDDy3tbK8OT8Pak2iYGkwX5A7eJqwiFAwd_KJepRumOa8wTs3OQpD2H1w/exec";
+const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbx7S5t4n8kKoqACa1ufba83nhd_BPSuRfJLyuwcCjEunzv3im59AW-2eEETxx2xPUxoRQ/exec";
 
 // DOM Elements
 const welcomeSection = document.getElementById('welcomeSection');
@@ -205,6 +206,7 @@ async function saveToGoogleSheets() {
     formData.append('nama', userData.nama);
     formData.append('telefon', userData.telefon);
     formData.append('email', userData.email);
+    formData.append('hadiah', userData.hadiah);  // Tambah hadiah
     formData.append('timestamp', new Date().toLocaleString('ms-MY', {
         timeZone: 'Asia/Kuala_Lumpur',
         year: 'numeric',
@@ -292,16 +294,17 @@ function spinWheel() {
 }
 
 function getWeightedPrize() {
-    // Weighted probability - more chances for smaller prizes
+    // Weighted probability berdasarkan hadiah baru
+    // 1x Free Buku ChatGPT, 2x Guerilla Marketing, 3x Minta Maaf, 2x Cuba Lagi
     const weights = [
-        5,   // DISKAUN 50% - rare
-        25,  // CUBA LAGI - common
-        10,  // VOUCHER RM50 - medium
-        15,  // DISKAUN 20% - medium
-        8,   // HADIAH MISTERI - rare
-        12,  // FREE GIFT - medium
-        15,  // DISKAUN 10% - medium
-        10   // CUBA LAGI - common
+        10,  // Free Buku ChatGPT For Business - rare (1 slot)
+        15,  // Free Ebook Guerilla Marketing - medium (slot 1)
+        20,  // Minta Maaf Cuba Lagi - common (slot 1)
+        15,  // Free Ebook Guerilla Marketing - medium (slot 2)
+        20,  // Minta Maaf Cuba Lagi - common (slot 2)
+        10,  // Cuba Lagi (slot 1)
+        20,  // Minta Maaf Cuba Lagi - common (slot 3)
+        10   // Cuba Lagi (slot 2)
     ];
 
     const totalWeight = weights.reduce((a, b) => a + b, 0);
@@ -317,45 +320,75 @@ function getWeightedPrize() {
     return 0;
 }
 
-function showResult(prize) {
+async function showResult(prize) {
     isSpinning = false;
-    spinBtn.disabled = false;
+    spinBtn.disabled = true; // Keep disabled - no more spinning after result
     spinBtn.querySelector('.spin-text').textContent = 'SPIN!';
 
-    // Check if it's "CUBA LAGI" (Try Again)
-    const isTryAgain = prize.name === "CUBA LAGI";
+    // Save prize to userData
+    userData.hadiah = prize.name;
 
     // Update modal content based on prize
     winnerName.textContent = userData.nama;
 
-    if (isTryAgain) {
-        // Show try again message
+    // Check if it's a sorry/try again prize
+    const isSorry = prize.isSorry;
+    const isCubaLagi = prize.name === "Cuba Lagi";
+
+    if (isSorry) {
+        // Show sorry message - Minta Maaf
+        document.querySelector('.trophy-icon').textContent = '😭';
+        document.querySelector('.result-title').textContent = 'MINTA MAAF!';
+        prizeValue.textContent = 'Cuba Lagi Di Lain Masa';
+        prizeValue.style.color = '#E74C3C';
+        document.querySelector('.result-message').innerHTML = 'Mengalihkan ke Facebook dalam <span id="countdown">3</span> saat...';
+        claimBtn.style.display = 'none'; // Hide button for auto-redirect
+    } else if (isCubaLagi) {
+        // Show Cuba Lagi message
         document.querySelector('.trophy-icon').textContent = '🔄';
         document.querySelector('.result-title').textContent = 'CUBA LAGI!';
-        prizeValue.textContent = 'Anda boleh putar sekali lagi!';
-        document.querySelector('.result-message').textContent = 'Jangan risau, nasib anda mungkin lebih baik kali ini!';
-        claimBtn.innerHTML = '<span>Putar Sekali Lagi</span><span class="arrow">🎡</span>';
-        claimBtn.setAttribute('data-action', 'spin-again');
-        // Change button color to gold for try again
-        claimBtn.style.background = 'linear-gradient(135deg, #FFD700, #FFA500)';
-        claimBtn.style.color = '#1a0a2e';
+        prizeValue.textContent = 'Putar sekali lagi!';
+        prizeValue.style.color = '#FFD700';
+        document.querySelector('.result-message').innerHTML = 'Mengalihkan ke Facebook dalam <span id="countdown">3</span> saat...';
+        claimBtn.style.display = 'none'; // Hide button for auto-redirect
     } else {
-        // Show winning message
+        // Show winning message - Got a prize!
         document.querySelector('.trophy-icon').textContent = '🏆';
         document.querySelector('.result-title').textContent = 'TAHNIAH!';
         prizeValue.textContent = prize.name;
-        document.querySelector('.result-message').textContent = 'Hadiah anda akan dihantar melalui email/WhatsApp';
-        claimBtn.innerHTML = '<span>Teruskan ke Facebook</span><span class="arrow">→</span>';
-        claimBtn.setAttribute('data-action', 'facebook');
-        // Reset button color to Facebook blue
-        claimBtn.style.background = 'linear-gradient(135deg, #4267B2, #3b5998)';
-        claimBtn.style.color = '#fff';
-        // Create confetti only for winners
+        prizeValue.style.color = '#4ECDC4';
+        document.querySelector('.result-message').innerHTML = 'Mengalihkan ke Facebook dalam <span id="countdown">3</span> saat...';
+        claimBtn.style.display = 'none'; // Hide button for auto-redirect
+        // Create confetti for winners
         createConfetti();
     }
 
     // Show modal
     resultModal.classList.add('show');
+
+    // Save to Google Sheets with prize info
+    try {
+        await saveToGoogleSheets();
+        console.log('Prize saved to Google Sheets:', userData.hadiah);
+    } catch (error) {
+        console.error('Failed to save prize to Google Sheets:', error);
+    }
+
+    // Auto countdown and redirect to Facebook after 3 seconds
+    let countdown = 3;
+    const countdownElement = document.getElementById('countdown');
+
+    const countdownInterval = setInterval(() => {
+        countdown--;
+        if (countdownElement) {
+            countdownElement.textContent = countdown;
+        }
+
+        if (countdown <= 0) {
+            clearInterval(countdownInterval);
+            window.location.href = FACEBOOK_URL;
+        }
+    }, 1000);
 }
 
 function createConfetti() {
@@ -376,25 +409,11 @@ function createConfetti() {
     }
 }
 
-// Claim Button - Handle both Spin Again and Facebook Redirect
+// Claim Button - No longer needed but keep for backup
 function initClaimButton() {
     claimBtn.addEventListener('click', () => {
-        const action = claimBtn.getAttribute('data-action');
-
-        // Add click animation
-        claimBtn.style.transform = 'scale(0.95)';
-
-        setTimeout(() => {
-            claimBtn.style.transform = '';
-
-            if (action === 'spin-again') {
-                // Close modal and allow spinning again
-                resultModal.classList.remove('show');
-            } else {
-                // Redirect to Facebook
-                window.location.href = FACEBOOK_URL;
-            }
-        }, 300);
+        // Redirect to Facebook immediately if clicked
+        window.location.href = FACEBOOK_URL;
     });
 }
 
