@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,15 @@
     <meta name="description" content="Putar roda dan menangkan hadiah menarik dari KB Wealth!">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <!-- Particles Background -->
     <div class="particles" id="particles"></div>
-    
+
     <!-- Main Container -->
     <div class="container">
         <!-- Logo & Header -->
@@ -25,8 +28,46 @@
             <p class="tagline">🎰 Putar & Menang! 🎰</p>
         </header>
 
+        <!-- Welcome Section -->
+        <section class="welcome-section" id="welcomeSection">
+            <div class="welcome-card">
+                <div class="card-shine"></div>
+                <div class="welcome-content">
+                    <div class="welcome-icon">🎉</div>
+                    <h2 class="welcome-title">Selamat Datang!</h2>
+                    <div class="welcome-divider"></div>
+                    <p class="welcome-message">
+                        Terima kasih kerana melawat <strong>KB Wealth</strong>! Anda berpeluang untuk memenangi
+                        hadiah-hadiah menarik dengan hanya memutar roda kami.
+                    </p>
+                    <div class="welcome-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🎁</span>
+                            <span>Hadiah Menarik</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">💯</span>
+                            <span>100% Percuma</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">⚡</span>
+                            <span>Segera Dapat</span>
+                        </div>
+                    </div>
+                    <p class="welcome-instruction">
+                        Isi maklumat ringkas anda dan putar roda untuk melihat apa yang menanti anda! 🍀
+                    </p>
+                    <button class="start-btn" id="startBtn">
+                        <span class="btn-text">Mula Sekarang!</span>
+                        <span class="btn-icon">→</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
         <!-- Registration Form Section -->
-        <section class="form-section" id="formSection">
+        <section class="form-section" id="formSection" style="display: none;">
             <div class="form-card">
                 <div class="card-shine"></div>
                 <div class="form-header">
@@ -34,33 +75,34 @@
                     <h2>Daftar & Menang!</h2>
                     <p>Isi maklumat anda untuk peluang memenangi hadiah menarik</p>
                 </div>
-                
+
                 <form id="registrationForm" class="registration-form">
                     <div class="input-group">
                         <div class="input-icon">👤</div>
                         <input type="text" id="nama" name="nama" placeholder="Nama Penuh" required>
                         <div class="input-line"></div>
                     </div>
-                    
+
                     <div class="input-group">
                         <div class="input-icon">📱</div>
-                        <input type="tel" id="telefon" name="telefon" placeholder="No. Telefon (cth: 0123456789)" required pattern="[0-9]{10,11}">
+                        <input type="tel" id="telefon" name="telefon" placeholder="No. Telefon (cth: 0123456789)"
+                            required pattern="[0-9]{10,11}">
                         <div class="input-line"></div>
                     </div>
-                    
+
                     <div class="input-group">
                         <div class="input-icon">✉️</div>
                         <input type="email" id="email" name="email" placeholder="Alamat Email" required>
                         <div class="input-line"></div>
                     </div>
-                    
+
                     <button type="submit" class="submit-btn">
                         <span class="btn-text">Teruskan untuk SPIN!</span>
                         <span class="btn-icon">🎡</span>
                         <div class="btn-glow"></div>
                     </button>
                 </form>
-                
+
                 <p class="terms">Dengan meneruskan, anda bersetuju dengan <a href="#">Terma & Syarat</a></p>
             </div>
         </section>
@@ -69,12 +111,12 @@
         <section class="wheel-section" id="wheelSection" style="display: none;">
             <div class="wheel-container">
                 <div class="wheel-glow"></div>
-                
+
                 <!-- Wheel Pointer -->
                 <div class="wheel-pointer">
                     <div class="pointer-arrow"></div>
                 </div>
-                
+
                 <!-- The Wheel -->
                 <div class="wheel" id="wheel">
                     <div class="wheel-segment segment-1">
@@ -102,14 +144,14 @@
                         <span>CUBA LAGI</span>
                     </div>
                 </div>
-                
+
                 <!-- Center Button -->
                 <button class="spin-button" id="spinBtn">
                     <span class="spin-text">SPIN!</span>
                     <div class="spin-glow"></div>
                 </button>
             </div>
-            
+
             <p class="spin-instruction">Tekan butang untuk memutar roda! 🍀</p>
         </section>
 
@@ -133,8 +175,17 @@
                 </div>
             </div>
         </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <p class="loading-text">Menyimpan maklumat anda...</p>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>

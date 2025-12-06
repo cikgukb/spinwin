@@ -24,7 +24,12 @@ let userData = {
 // Facebook redirect URL
 const FACEBOOK_URL = "https://www.facebook.com/kbbeyond";
 
+// Google Sheets Web App URL - GANTI DENGAN URL ANDA
+// Ikut panduan di bawah untuk mendapatkan URL ini
+const GOOGLE_SHEET_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
+
 // DOM Elements
+const welcomeSection = document.getElementById('welcomeSection');
 const formSection = document.getElementById('formSection');
 const wheelSection = document.getElementById('wheelSection');
 const registrationForm = document.getElementById('registrationForm');
@@ -35,14 +40,36 @@ const winnerName = document.getElementById('winnerName');
 const prizeValue = document.getElementById('prizeValue');
 const claimBtn = document.getElementById('claimBtn');
 const particlesContainer = document.getElementById('particles');
+const startBtn = document.getElementById('startBtn');
+const loadingOverlay = document.getElementById('loadingOverlay');
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     createParticles();
+    initWelcomeSection();
     initFormValidation();
     initSpinWheel();
     initClaimButton();
 });
+
+// Welcome Section Handler
+function initWelcomeSection() {
+    startBtn.addEventListener('click', () => {
+        transitionToForm();
+    });
+}
+
+function transitionToForm() {
+    // Fade out welcome section
+    welcomeSection.style.animation = 'fadeOutUp 0.5s ease forwards';
+
+    setTimeout(() => {
+        welcomeSection.style.display = 'none';
+        formSection.style.display = 'block';
+        formSection.style.animation = 'fadeInUp 0.8s ease';
+    }, 500);
+}
+
 
 // Create Floating Particles
 function createParticles() {
@@ -63,7 +90,7 @@ function createParticles() {
 
 // Form Validation & Submission
 function initFormValidation() {
-    registrationForm.addEventListener('submit', (e) => {
+    registrationForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         // Get form values
@@ -76,11 +103,31 @@ function initFormValidation() {
             return;
         }
 
-        // Save to localStorage (simple data persistence)
-        saveUserData();
+        // Show loading overlay
+        showLoading(true);
 
-        // Transition to wheel section
-        transitionToWheel();
+        try {
+            // Save to Google Sheets
+            await saveToGoogleSheets();
+
+            // Also save to localStorage as backup
+            saveToLocalStorage();
+
+            // Hide loading and transition to wheel section
+            showLoading(false);
+            transitionToWheel();
+        } catch (error) {
+            console.error('Error saving data:', error);
+            showLoading(false);
+
+            // Still proceed even if Google Sheets fails
+            // Data is saved locally as backup
+            saveToLocalStorage();
+            showAlert('Maklumat disimpan secara tempatan. Teruskan bermain!');
+            setTimeout(() => {
+                transitionToWheel();
+            }, 1500);
+        }
     });
 }
 
@@ -104,6 +151,14 @@ function validateForm() {
     }
 
     return true;
+}
+
+function showLoading(show) {
+    if (show) {
+        loadingOverlay.classList.add('show');
+    } else {
+        loadingOverlay.classList.remove('show');
+    }
 }
 
 function showAlert(message) {
@@ -138,14 +193,49 @@ function showAlert(message) {
     }, 3000);
 }
 
-function saveUserData() {
+// Save to Google Sheets via Web App
+async function saveToGoogleSheets() {
+    // Check if URL is configured
+    if (GOOGLE_SHEET_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL") {
+        console.log('Google Sheets URL not configured. Skipping...');
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('nama', userData.nama);
+    formData.append('telefon', userData.telefon);
+    formData.append('email', userData.email);
+    formData.append('timestamp', new Date().toLocaleString('ms-MY', {
+        timeZone: 'Asia/Kuala_Lumpur',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    }));
+
+    const response = await fetch(GOOGLE_SHEET_URL, {
+        method: 'POST',
+        body: formData
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to save to Google Sheets');
+    }
+
+    console.log('Data saved to Google Sheets successfully!');
+}
+
+// Save to localStorage as backup
+function saveToLocalStorage() {
     const entries = JSON.parse(localStorage.getItem('spinWinEntries') || '[]');
     entries.push({
         ...userData,
         timestamp: new Date().toISOString()
     });
     localStorage.setItem('spinWinEntries', JSON.stringify(entries));
-    console.log('User data saved:', userData);
+    console.log('User data saved to localStorage:', userData);
 }
 
 function transitionToWheel() {
@@ -158,6 +248,7 @@ function transitionToWheel() {
         wheelSection.style.animation = 'fadeInUp 0.8s ease';
     }, 500);
 }
+
 
 // Spin Wheel Logic
 let isSpinning = false;

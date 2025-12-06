@@ -10,26 +10,26 @@
     --purple-light: #9B59B6;
     --purple: #8E44AD;
     --purple-dark: #6C3483;
-    
+
     /* Background Colors */
     --bg-primary: #0a0015;
     --bg-secondary: #1a0a2e;
     --bg-card: rgba(30, 15, 50, 0.8);
-    
+
     /* Text Colors */
     --text-primary: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.7);
     --text-gold: #FFD700;
-    
+
     /* Gradients */
     --gradient-gold: linear-gradient(135deg, #FFD700, #FFA500, #FF8C00);
     --gradient-purple: linear-gradient(135deg, #9B59B6, #8E44AD, #6C3483);
     --gradient-bg: linear-gradient(135deg, #0a0015 0%, #1a0a2e 50%, #2d1b4e 100%);
-    
+
     /* Shadows */
     --shadow-gold: 0 0 30px rgba(255, 215, 0, 0.5);
     --shadow-purple: 0 0 30px rgba(142, 68, 173, 0.5);
-    
+
     /* Font */
     --font-main: 'Poppins', sans-serif;
 }
@@ -72,16 +72,21 @@ body {
 }
 
 @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(100vh) rotate(0deg);
         opacity: 0;
     }
+
     10% {
         opacity: 0.6;
     }
+
     90% {
         opacity: 0.6;
     }
+
     100% {
         transform: translateY(-100vh) rotate(720deg);
         opacity: 0;
@@ -113,6 +118,7 @@ body {
         opacity: 0;
         transform: translateY(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -137,10 +143,13 @@ body {
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translate(-50%, -50%) scale(1);
         opacity: 0.5;
     }
+
     50% {
         transform: translate(-50%, -50%) scale(1.2);
         opacity: 0.8;
@@ -174,9 +183,12 @@ body {
 }
 
 @keyframes bounce {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-5px);
     }
@@ -193,6 +205,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -215,12 +228,10 @@ body {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(
-        45deg,
-        transparent 40%,
-        rgba(255, 215, 0, 0.1) 50%,
-        transparent 60%
-    );
+    background: linear-gradient(45deg,
+            transparent 40%,
+            rgba(255, 215, 0, 0.1) 50%,
+            transparent 60%);
     animation: shine 3s infinite;
 }
 
@@ -228,6 +239,7 @@ body {
     0% {
         transform: translateX(-100%) rotate(45deg);
     }
+
     100% {
         transform: translateX(100%) rotate(45deg);
     }
@@ -246,9 +258,12 @@ body {
 }
 
 @keyframes wiggle {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: rotate(-5deg);
     }
+
     50% {
         transform: rotate(5deg);
     }
@@ -323,7 +338,7 @@ body {
     transform: translateX(-50%);
 }
 
-.input-group input:focus ~ .input-line {
+.input-group input:focus~.input-line {
     width: 100%;
 }
 
@@ -372,6 +387,7 @@ body {
     0% {
         left: -100%;
     }
+
     100% {
         left: 100%;
     }
@@ -386,6 +402,7 @@ body {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -442,10 +459,13 @@ body {
 }
 
 @keyframes wheelPulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translate(-50%, -50%) scale(1);
         opacity: 0.5;
     }
+
     50% {
         transform: translate(-50%, -50%) scale(1.1);
         opacity: 0.8;
@@ -458,17 +478,15 @@ body {
     height: 100%;
     border-radius: 50%;
     position: relative;
-    background: conic-gradient(
-        #FFD700 0deg 45deg,
-        #8E44AD 45deg 90deg,
-        #FF6B6B 90deg 135deg,
-        #4ECDC4 135deg 180deg,
-        #FFD700 180deg 225deg,
-        #8E44AD 225deg 270deg,
-        #FF6B6B 270deg 315deg,
-        #4ECDC4 315deg 360deg
-    );
-    box-shadow: 
+    background: conic-gradient(#FFD700 0deg 45deg,
+            #8E44AD 45deg 90deg,
+            #FF6B6B 90deg 135deg,
+            #4ECDC4 135deg 180deg,
+            #FFD700 180deg 225deg,
+            #8E44AD 225deg 270deg,
+            #FF6B6B 270deg 315deg,
+            #4ECDC4 315deg 360deg);
+    box-shadow:
         0 0 0 8px var(--gold),
         0 0 0 12px var(--purple),
         0 0 0 16px var(--gold-dark),
@@ -498,20 +516,43 @@ body {
     font-size: 0.65rem;
     font-weight: 700;
     color: #fff;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     text-align: center;
     width: 70px;
     line-height: 1.2;
 }
 
-.segment-1 { transform: rotate(-22.5deg); }
-.segment-2 { transform: rotate(22.5deg); }
-.segment-3 { transform: rotate(67.5deg); }
-.segment-4 { transform: rotate(112.5deg); }
-.segment-5 { transform: rotate(157.5deg); }
-.segment-6 { transform: rotate(202.5deg); }
-.segment-7 { transform: rotate(247.5deg); }
-.segment-8 { transform: rotate(292.5deg); }
+.segment-1 {
+    transform: rotate(-22.5deg);
+}
+
+.segment-2 {
+    transform: rotate(22.5deg);
+}
+
+.segment-3 {
+    transform: rotate(67.5deg);
+}
+
+.segment-4 {
+    transform: rotate(112.5deg);
+}
+
+.segment-5 {
+    transform: rotate(157.5deg);
+}
+
+.segment-6 {
+    transform: rotate(202.5deg);
+}
+
+.segment-7 {
+    transform: rotate(247.5deg);
+}
+
+.segment-8 {
+    transform: rotate(292.5deg);
+}
 
 /* Wheel Pointer */
 .wheel-pointer {
@@ -528,14 +569,17 @@ body {
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
     border-top: 40px solid var(--gold);
-    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
     animation: pointerBounce 0.5s ease infinite;
 }
 
 @keyframes pointerBounce {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(5px);
     }
@@ -557,7 +601,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
     overflow: hidden;
 }
@@ -598,6 +642,7 @@ body {
     0% {
         left: -100%;
     }
+
     100% {
         left: 100%;
     }
@@ -638,6 +683,7 @@ body {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -662,9 +708,11 @@ body {
         transform: scale(0.5);
         opacity: 0;
     }
+
     70% {
         transform: scale(1.05);
     }
+
     100% {
         transform: scale(1);
         opacity: 1;
@@ -694,6 +742,7 @@ body {
         transform: translateY(-10px) rotate(0deg);
         opacity: 1;
     }
+
     100% {
         transform: translateY(400px) rotate(720deg);
         opacity: 0;
@@ -711,9 +760,12 @@ body {
 }
 
 @keyframes trophyBounce {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1) rotate(-5deg);
     }
+
     50% {
         transform: scale(1.1) rotate(5deg);
     }
@@ -734,6 +786,7 @@ body {
     from {
         filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
     }
+
     to {
         filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
     }
@@ -771,6 +824,7 @@ body {
     from {
         transform: scale(1);
     }
+
     to {
         transform: scale(1.05);
     }
@@ -821,37 +875,37 @@ body {
     .container {
         padding: 15px;
     }
-    
+
     .logo {
         font-size: 2.2rem;
     }
-    
+
     .tagline {
         font-size: 1.1rem;
     }
-    
+
     .form-card {
         padding: 30px 20px;
     }
-    
+
     .form-header h2 {
         font-size: 1.5rem;
     }
-    
+
     .wheel-container {
         width: 280px;
         height: 280px;
     }
-    
+
     .spin-button {
         width: 70px;
         height: 70px;
     }
-    
+
     .result-title {
         font-size: 2rem;
     }
-    
+
     .prize-value {
         font-size: 1.5rem;
     }
@@ -866,7 +920,275 @@ body {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
+    }
+}
+
+/* ========================================
+   Welcome Section Styles
+   ======================================== */
+.welcome-section {
+    width: 100%;
+    animation: fadeInUp 1s ease 0.3s both;
+}
+
+.welcome-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 40px 30px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.welcome-content {
+    position: relative;
+    z-index: 1;
+}
+
+.welcome-icon {
+    font-size: 5rem;
+    animation: welcomeBounce 2s infinite;
+    margin-bottom: 10px;
+}
+
+@keyframes welcomeBounce {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-10px) scale(1.1);
+    }
+}
+
+.welcome-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 15px 0;
+}
+
+.welcome-divider {
+    width: 80px;
+    height: 4px;
+    background: var(--gradient-gold);
+    border-radius: 2px;
+    margin: 15px auto 25px;
+    animation: dividerPulse 2s infinite;
+}
+
+@keyframes dividerPulse {
+
+    0%,
+    100% {
+        width: 80px;
+        opacity: 1;
+    }
+
+    50% {
+        width: 120px;
+        opacity: 0.7;
+    }
+}
+
+.welcome-message {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.welcome-message strong {
+    color: var(--gold);
+}
+
+.welcome-highlights {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 215, 0, 0.1);
+    padding: 12px 18px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.highlight-item:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+}
+
+.highlight-icon {
+    font-size: 1.2rem;
+}
+
+.highlight-item span:last-child {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.welcome-instruction {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 25px 0;
+    line-height: 1.6;
+}
+
+.start-btn {
+    width: 100%;
+    max-width: 300px;
+    padding: 18px 30px;
+    background: var(--gradient-gold);
+    border: none;
+    border-radius: 12px;
+    color: #1a0a2e;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: var(--font-main);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.start-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-gold);
+}
+
+.start-btn:active {
+    transform: translateY(0);
+}
+
+.start-btn .btn-icon {
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+    animation: none;
+}
+
+.start-btn:hover .btn-icon {
+    transform: translateX(5px);
+}
+
+/* ========================================
+   Loading Overlay Styles
+   ======================================== */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 0, 21, 0.9);
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.loading-overlay.show {
+    display: flex;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 215, 0, 0.2);
+    border-top: 4px solid var(--gold);
+    border-radius: 50%;
+    animation: spinLoader 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spinLoader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-text {
+    color: var(--text-gold);
+    font-size: 1.1rem;
+    font-weight: 500;
+    animation: loadingPulse 1.5s infinite;
+}
+
+@keyframes loadingPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* ========================================
+   Responsive for Welcome Section
+   ======================================== */
+@media (max-width: 480px) {
+    .welcome-card {
+        padding: 30px 20px;
+    }
+
+    .welcome-icon {
+        font-size: 4rem;
+    }
+
+    .welcome-title {
+        font-size: 1.8rem;
+    }
+
+    .welcome-message {
+        font-size: 0.9rem;
+    }
+
+    .highlight-item {
+        padding: 10px 14px;
+    }
+
+    .highlight-item span:last-child {
+        font-size: 0.8rem;
+    }
+
+    .start-btn {
+        font-size: 1rem;
+        padding: 15px 25px;
     }
 }
